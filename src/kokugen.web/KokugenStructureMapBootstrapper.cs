@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Web.Routing;
 using AutoMapper;
 using FubuCore;
@@ -34,11 +37,17 @@ namespace Kokugen.Web
         {
             UrlContext.Reset();
 
+            var pluginDir = UrlContext.ToPhysicalPath("Plugins");
+            var kokugenPluginRegistry = new KokugenPluginRegistry(pluginDir);
+
             ObjectFactory.Initialize(x =>
                                          {
                                              x.AddRegistry(new KokugenCoreRegistry());
                                              x.AddRegistry(new KokugenWebRegistry());
+                                             x.AddRegistry(kokugenPluginRegistry);
                                          });
+
+            kokugenPluginRegistry.Assemblies.Each(x => fubuRegistry.Applies.ToAssembly(x));
 
             var fubuBootstrapper = new StructureMapBootstrapper(ObjectFactory.Container, fubuRegistry);
             fubuBootstrapper.Builder = (c, args, id) =>

@@ -164,6 +164,7 @@
     <Content Include="Content\Scripts\jquery.metadata.js" />
     <Content Include="Content\Scripts\showdown.js" />
     <Content Include="Global.asax" />
+    <Content Include="Plugins\readme.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -335,6 +336,7 @@
     <Compile Include="HtmlExtensions.cs" />
     <Compile Include="KokugenFubuStructureMapApplication.cs" />
     <Compile Include="KokugenFubuRegistry.cs" />
+    <Compile Include="KokugenPluginRegistry.cs" />
     <Compile Include="KokugenStructureMapBootstrapper.cs" />
     <Compile Include="KokugenWebRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

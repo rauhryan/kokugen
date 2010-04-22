@@ -1,16 +1,19 @@
+using FubuMVC.Core.View;
 using HtmlTags;
 
 namespace Test
 {
     public class TestThisPluginAction
     {
-        public HtmlTag  Query(TestThisPluginModel model)
+        public TestThisPluginModel Query(TestThisPluginModel model)
         {
-            return new HtmlTag("div").Text("Hello world!");
+            return model;
         }
     }
 
     public class TestThisPluginModel
     {
     }
+
+    public class Test : FubuPage<TestThisPluginModel>{}
 }

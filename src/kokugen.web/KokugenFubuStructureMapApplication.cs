@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Routing;
 using FubuMVC.Core;
 
@@ -35,4 +36,5 @@ namespace Kokugen.Web
             KokugenStructureMapBootstrapper.Bootstrap(routeCollection, GetMyRegistry());
         }
     }
+
 }

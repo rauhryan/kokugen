@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using FubuCore;
 using FubuMVC.Core;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Registration.DSL;
+using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.ObjectGraph;
 using FubuMVC.Core.Urls;
+using FubuMVC.Core.View;
 using Kokugen.Core.Membership;
 using Kokugen.Web.Actions;
 using Kokugen.Web.Actions.Board;
@@ -86,7 +89,6 @@ namespace Kokugen.Web
             
         }
     }
-
 
     //public class KokugenViewAttachmentStrategy : IViewsForActionFilter
     //{

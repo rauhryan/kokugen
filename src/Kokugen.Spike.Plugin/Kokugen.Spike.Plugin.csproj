@@ -32,8 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FubuMVC.Core">
+      <HintPath>..\..\lib\FubuMVC\FubuMVC.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="HtmlTags">
       <HintPath>..\..\lib\FubuMVC\HtmlTags.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\lib\StructureMap\StructureMap.dll</HintPath>
@@ -41,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -50,7 +56,9 @@
     <Compile Include="MyPluginRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestStartable.cs" />
-    <Compile Include="TestThisPluginAction.cs" />
+    <Compile Include="TestThisPluginAction.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\kokugen.core\Kokugen.Core.csproj">
@@ -58,6 +66,11 @@
       <Name>Kokugen.Core</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Test.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

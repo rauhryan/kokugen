@@ -3,6 +3,7 @@
 
 <%@ Import Namespace="Kokugen.Web.Actions.Project.Manage.Users.Add" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <%=this.Script("jquery.ajaxqueue.js") %>
 	<%=this.Script("jquery.metadata.js")%>
     <%=this.Script("util.js") %>
     <%=this.Script("project/manage/view.js") %>

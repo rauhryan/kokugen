@@ -169,6 +169,7 @@
     <Content Include="Content\images\task16.png" />
     <Content Include="Content\Scripts\cardEdit.js" />
     <Content Include="Content\Scripts\company.js" />
+    <Content Include="Content\Scripts\jquery.ajaxqueue.js" />
     <Content Include="Content\Scripts\projectusers.js" />
     <Content Include="Content\Scripts\Project\Manage\controller.js" />
     <Content Include="Content\Scripts\Project\Manage\model.js" />

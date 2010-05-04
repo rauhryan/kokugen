@@ -1,9 +1,8 @@
 using System;
-using Kokugen.Core.Domain;
 using Kokugen.Core.Membership.Services;
 using Kokugen.Web.Conventions;
 
-namespace Kokugen.Web.Actions.Project.Manage.Users.Roles
+namespace Kokugen.Web.Actions.Project.Manage.Roles.Users
 {
     public class AddToRoleAction
     {

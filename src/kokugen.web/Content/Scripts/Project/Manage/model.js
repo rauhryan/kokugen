@@ -15,7 +15,7 @@ jQuery.extend({
 		
 		this.myRole = role;
 		
-		this.url = '/Project/Manage/Users/Roles/'+ projectId;
+		this.url = '/Project/Manage/Roles/Users/'+ projectId;
 		
 		this.getCount = function () {
 			return cache.toArray().length;

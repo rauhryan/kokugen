@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Kokugen.Web.Actions.Project.Manage.Users.ProjectUsers"
+﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Kokugen.Web.Actions.Project.Manage.Users.Users"
     MasterPageFile="~/Shared/Project.Master" %>
 
 <%@ Import Namespace="Kokugen.Web.Actions.Project.Manage.Users.Add" %>

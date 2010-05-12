@@ -14,4 +14,4 @@ _ReSharper.*
 ~$*
 *.orig
 *.5.0.ReSharper
-CommonAssemblyInfo.cs
+src/CommonAssemblyInfo.cs

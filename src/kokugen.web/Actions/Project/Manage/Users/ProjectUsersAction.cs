@@ -80,7 +80,7 @@ namespace Kokugen.Web.Actions.Project.Manage.Users
         public string Name { get; set; }
     }
 
-    public class ProjectUsers : FubuPage<ProjectUsersModel>
+    public class Users : FubuPage<ProjectUsersModel>
     {
     }
 }

@@ -137,7 +137,7 @@
     <Content Include="Actions\DailyTimeRecord\DailyTimeRecord_Control.ascx" />
     <Content Include="Actions\Errors\FourZeroThree.aspx" />
     <Content Include="Actions\Metrics\Get.aspx" />
-    <Content Include="Actions\Project\Manage\Users\ProjectUsers.aspx" />
+    <Content Include="Actions\Project\Manage\Users\Users.aspx" />
     <Content Include="Actions\Project\MenuList\ProjectMenu.aspx" />
     <Content Include="Actions\Project\Manage\Users\Add\AddUserToProject.aspx" />
     <Content Include="Content\amline\amline.swf" />
@@ -169,6 +169,7 @@
     <Content Include="Content\images\task16.png" />
     <Content Include="Content\Scripts\cardEdit.js" />
     <Content Include="Content\Scripts\company.js" />
+    <Content Include="Content\Scripts\jquery.ajaxqueue.js" />
     <Content Include="Content\Scripts\projectusers.js" />
     <Content Include="Content\Scripts\Project\Manage\controller.js" />
     <Content Include="Content\Scripts\Project\Manage\model.js" />
@@ -289,9 +290,9 @@
     <Compile Include="Actions\Project\Manage\Users\ProjectUsersAction.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Actions\Project\Manage\Users\Roles\AddToRoleAction.cs" />
-    <Compile Include="Actions\Project\Manage\Users\Roles\GetUsersAction.cs" />
-    <Compile Include="Actions\Project\Manage\Users\Roles\RemoveFromRoleAction.cs" />
+    <Compile Include="Actions\Project\Manage\Roles\Users\AddToRoleAction.cs" />
+    <Compile Include="Actions\Project\Manage\Roles\Users\GetUsersAction.cs" />
+    <Compile Include="Actions\Project\Manage\Roles\Users\RemoveFromRoleAction.cs" />
     <Compile Include="Actions\Project\ProjectFormAction.cs" />
     <Compile Include="Actions\Project\MenuList\ProjectMenuAction.cs">
       <SubType>ASPXCodeBehind</SubType>

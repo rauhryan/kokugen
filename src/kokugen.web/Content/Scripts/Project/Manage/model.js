@@ -15,7 +15,7 @@ jQuery.extend({
 		
 		this.myRole = role;
 		
-		this.url = '/Project/Manage/Users/Roles/'+ projectId;
+		this.url = '/Project/Manage/Roles/Users/'+ projectId;
 		
 		this.getCount = function () {
 			return cache.toArray().length;
@@ -59,7 +59,7 @@ jQuery.extend({
 		this.addUser = function (user) {
 		    cache.put(user.Id, user);
 			
-			$.ajax({
+			jQuery.ajax({
 				url: me.url,
 				type: 'POST',
 				data: { RoleId : me.myRole.Id, UserId : user.Id },
@@ -76,7 +76,7 @@ jQuery.extend({
 		
 		this.removeUser = function (id) {
 			cache.clear(id);
-			$.ajax({
+			jQuery.ajax({
 				url: me.url,
 				type: 'DELETE',
 				data: { RoleId : me.myRole.Id, UserId : id },

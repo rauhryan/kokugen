@@ -20,13 +20,15 @@ DBSERVER = "localhost"
 VIRDBSERVER = "CASQLSRV01"
 
 
+MSPEC = "lib\\mspec\\mspec.exe"
+
 props = { :archive => "build" }
 
 desc "Compiles, unit tests, generates the database"
 task :all => [:default]
 
 desc "**Default**, compiles and runs tests"
-task :default => [:compile, :unit_test]
+task :default => [:compile, :test]
 
 desc "Update the version information for the build"
 assemblyinfo :version do |asm|
@@ -89,12 +91,18 @@ def copyOutputFiles(fromDir, filePattern, outDir)
 end
 
 desc "Runs unit tests"
-task :test => [:unit_test]
+task :test => [:unit_test, :specs]
 
 desc "Runs unit tests"
 task :unit_test => :compile do
   runner = NUnitRunner.new :compilemode => COMPILE_TARGET, :source => 'src', :platform => 'x86'
   runner.executeTests ['Kokugen.Tests']
+end
+
+desc "Run the machine.specification tests"
+task :specs => :compileSln do
+  runner = MSpecRunner.new :compilemode => COMPILE_TARGET, :source => 'src', :options => '--html build\\mspec-test.html'
+  runner.executeTests ['Kokugen.MSpec.Tests']
 end
 
 desc "Target used for the CI server"

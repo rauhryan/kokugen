@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kokugen.Web", "kokugen.web\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kokugen.Tests", "kokugen.tests\Kokugen.Tests.csproj", "{583EE9FD-B816-40B8-B317-F2C06D887A3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kokugen.MSpec.Tests", "Kokugen.MSpec.Tests\Kokugen.MSpec.Tests.csproj", "{1D7BFFE7-A609-4959-8081-D0ABDA405577}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{583EE9FD-B816-40B8-B317-F2C06D887A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{583EE9FD-B816-40B8-B317-F2C06D887A3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{583EE9FD-B816-40B8-B317-F2C06D887A3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D7BFFE7-A609-4959-8081-D0ABDA405577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7BFFE7-A609-4959-8081-D0ABDA405577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7BFFE7-A609-4959-8081-D0ABDA405577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7BFFE7-A609-4959-8081-D0ABDA405577}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

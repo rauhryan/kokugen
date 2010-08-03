@@ -23,7 +23,9 @@ namespace Kokugen.Core.Domain
         [MaximumStringLength(10000)]
         public virtual string Details { get; set; }
         public virtual int TimeEstimate { get; set; }
-        public virtual int Size { get; set; }
+
+        [Required]
+        public virtual string Size { get; set; }
         public virtual string Priority { get; set; }
         public virtual DateTime? Deadline { get; set; }
         public virtual string Color { get; set; }

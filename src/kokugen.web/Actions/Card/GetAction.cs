@@ -33,7 +33,7 @@ namespace Kokugen.Web.Actions.Card
         [Markdown]
         public string Details { get; set; }
         public int TimeEstimate { get; set; }
-        public int Size { get; set; }
+        public string Size { get; set; }
         public string Priority { get; set; }
         public DateTime? Deadline { get; set; }
         public int CardNumber { get; set; }

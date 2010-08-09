@@ -1,0 +1,1 @@
+ALTER TABLE Cards ALTER COLUMN Size nvarchar(250)

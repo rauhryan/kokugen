@@ -22,7 +22,7 @@ namespace Kokugen.Web.Conventions
             validationAttributes();
             editors();
 
-            
+
 
             BeforePartial.Builder(new BeforePartialBuilder());
             AfterPartial.Builder(new AfterPartialBuilder());
@@ -32,11 +32,11 @@ namespace Kokugen.Web.Conventions
             BeforeEachOfPartial.Modifier<FixedItemBoardModifier>();
             BeforeEachOfPartial.Modifier<BoardColumnIDAdder>();
             BeforeEachOfPartial.Modifier<CardListItemModifier>();
-            
+
             BeforeEachOfPartial.If(x => x.ModelType == typeof(ProjectListModel)).Modify(x => x.AddClass("project"));
             BeforeEachOfPartial.If(x => x.ModelType == typeof(BoardConfigurationModel)).Modify(x => x.AddClass("phase"));
-            
-            Profile("inplace", x=> x.Editors.Builder<EditInPlaceBuilder>());
+
+            Profile("inplace", x => x.Editors.Builder<EditInPlaceBuilder>());
 
             //BeforeEachOfPartial.If(x => x.Accessor.)
 
@@ -45,7 +45,7 @@ namespace Kokugen.Web.Conventions
 
             Displays.If(x => x.Accessor.PropertyType.IsType<DateTime?>()).Modify(tag =>
                                                                                      {
-                                                                                         if(tag.Text().IsEmpty())
+                                                                                         if (tag.Text().IsEmpty())
                                                                                              tag.Text("-");
                                                                                      });
 
@@ -74,8 +74,8 @@ namespace Kokugen.Web.Conventions
             Editors.IfPropertyIs<Int32>().Attr("max", Int32.MaxValue);
             Editors.IfPropertyIs<Int16>().Attr("max", Int16.MaxValue);
             Editors.IfPropertyIs<Int64>().Attr("max", Int64.MaxValue);
-            Editors.IfPropertyTypeIs(IsIntegerBased).AddClass("digits");
-            Editors.IfPropertyTypeIs(IsFloatingPoint).AddClass("number");
+            //Editors.IfPropertyTypeIs(IsIntegerBased).AddClass("digits");
+            //Editors.IfPropertyTypeIs(IsFloatingPoint).AddClass("number");
         }
 
         // Declare policies for using validation attributes

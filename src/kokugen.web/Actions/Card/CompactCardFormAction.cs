@@ -7,6 +7,7 @@ using Kokugen.Core.Domain;
 using Kokugen.Core.Membership.Services;
 using Kokugen.Core.Services;
 using AutoMapper;
+using System.Linq;
 namespace Kokugen.Web.Actions.Card
 {
     public class CompactCardFormAction
@@ -40,11 +41,15 @@ namespace Kokugen.Web.Actions.Card
 
             
 
+
             
             var notification = _cardService.SaveCard(card);
             if (notification.IsValid())
             {
-                card.Column = project.Backlog;
+                if (model.SubmitType == "Hang on Board")
+                    card.Column = project.GetBoardColumns().OrderBy(x => x.ColumnOrder).First();
+                else
+                    card.Column = project.Backlog;
                 card.ColumnChanged(null, card.Column);
                 project.AddCard(card);
                 _projectService.SaveProject(project);
@@ -71,6 +76,7 @@ namespace Kokugen.Web.Actions.Card
         [ValueOf("User")]
         public Guid UserId { get; set; }
 
-        public string Submit { get; set; }
+        public string SubmitType { get; set; }
+        public string SubmitButton { get; set; }
     }
 }

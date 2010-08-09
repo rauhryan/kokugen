@@ -1,13 +1,9 @@
-USE [KokugenDataDev]
-GO
 
 /****** Object:  StoredProcedure [dbo].[GetCumalitiveFlowForProject]    Script Date: 04/23/2010 09:27:45 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GetCumalitiveFlowForProject]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[GetCumalitiveFlowForProject]
 GO
 
-USE [KokugenDataDev]
-GO
 
 /****** Object:  StoredProcedure [dbo].[GetCumalitiveFlowForProject]    Script Date: 04/23/2010 09:27:45 ******/
 SET ANSI_NULLS ON

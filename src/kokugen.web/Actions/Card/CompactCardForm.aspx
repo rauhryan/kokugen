@@ -26,9 +26,11 @@
         <%= this.InputFor(x => x.Card.Id).Hide() %>
         <%= this.InputFor(x => x.ProjectId).Hide() %>
         <%= this.InputFor(x => x.Card.Details).Id("card-details").Hide() %>
+        <input type="hidden" name="SubmitType" id="submitType" />
         <div class="actions">
              <button id="details-button" class="btn">Details</button>
-             <input type="submit" name="Submit" value="Add to Backlog" id="save-button" class="button grn"/>
+             <input type="submit" name="SubmitButton" value="Hang on Board" id="hang-button" class="button grn" />
+             <input type="submit" name="SubmitButton" value="Add to Backlog" id="save-button" class="button grn"/>
              
          </div>
      </div>
@@ -48,6 +50,17 @@
         var card = new Card(data.Item);
         _cards.push(card);
         $("#backlog-container ul.card-list").append(buildCardDisplay(card));
+
+        $("#compact-card-container").slideToggle('medium');
+        $("form").hintify();
+    }
+
+    function hangOnBoard(data) {
+        var card = new Card(data.Item);
+        _cards.push(card);
+        var col = $(".column ul.card-list")[1];
+        var card = buildCardDisplay(card);
+        $(col).append(card);
 
         $("#compact-card-container").slideToggle('medium');
         $("form").hintify();
@@ -83,14 +96,17 @@
         $('#save-button').submit(function () {
             //            if ($('#card-size-box').val() == "Card Size (Optional)")
             //            { $('#card-size-box').val(''); }
-
-
             $("[_hint]").each(function () { $(this).removeHint() });
-
+            
             ValidateAndSave(updateBoard, $("#card-form-compact"));
             return false;
+        });
 
-
+        $('#hang-button').submit(function () {
+            $("[_hint]").each(function () { $(this).removeHint() });
+            $('#submitType').val("Hang on Board");
+            ValidateAndSave(hangOnBoard, $("#card-form-compact"));
+            return false;
         });
 
     });

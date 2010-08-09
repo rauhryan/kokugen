@@ -37,11 +37,12 @@ namespace Kokugen.Core.Events
 
         public void SendMessage<T>(Action<T> action) where T : class
         {
-            sendAction(() => all().Each(x => x.CallOn(action)));
+            sendAction(() => allTypes().Each(x => x.CallOn(action)));
         }
 
         public void SendMessage<T>(T message)
         {
+            sendAction(() => allTypes().CallOnEach<IListener<T>>(_container, x => { x.Handle(message); }));
             sendAction(() => all().CallOnEach<IListener<T>>(_container, x => { x.Handle(message); }));
         }
 
@@ -77,11 +78,19 @@ namespace Kokugen.Core.Events
 
         #endregion
 
-        private object[] all()
+        private object[] allTypes()
         {
             lock (_locker)
             {
                 return _typeListeners.ToArray();
+            }
+        }
+
+        private object[] all()
+        {
+            lock(_locker)
+            {
+                return _listeners.ToArray();
             }
         }
 

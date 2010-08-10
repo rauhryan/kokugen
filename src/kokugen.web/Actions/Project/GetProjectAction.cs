@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Kokugen.Core.Permissions;
+using Kokugen.Core.Permissions.Handlers;
 using Kokugen.Core.Services;
 using Kokugen.Web.Conventions;
 
@@ -33,5 +35,35 @@ namespace Kokugen.Web.Actions.Project
         public Core.Domain.Project Project { get; set; }
 
         public IList<Core.Domain.TimeRecord> TimeRecords { get; set; }
+    }
+
+    public class CanViewProjectPermission1 : AbstractPermissionHandler<GetProjectModel>
+    {
+        private readonly UserContext _userContext;
+
+        public CanViewProjectPermission1(UserContext userContext)
+        {
+            _userContext = userContext;
+        }
+
+        public override bool Execute(GetProjectModel input)
+        {
+            var projects = _userContext.User.GetProjects();
+            return true;
+        }
+    }
+    public class CanViewProjectPermission2 : AbstractPermissionHandler<GetProjectModel>
+    {
+        private readonly UserContext _userContext;
+
+        public CanViewProjectPermission2(UserContext userContext)
+        {
+            _userContext = userContext;
+        }
+
+        public override bool Execute(GetProjectModel input)
+        {
+            return true;
+        }
     }
 }

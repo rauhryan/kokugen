@@ -10,6 +10,8 @@ using Kokugen.Core.Events;
 using Kokugen.Core.Membership.Security;
 using Kokugen.Core.Membership.Services;
 using Kokugen.Core.Membership.Settings;
+using Kokugen.Core.Permissions;
+using Kokugen.Core.Permissions.Handlers;
 using Kokugen.Core.Persistence;
 using Kokugen.Core.Services;
 using NHibernate;
@@ -29,10 +31,20 @@ namespace Kokugen.Core
                          x.TheCallingAssembly();
                          x.WithDefaultConventions();
                          x.Convention<SettingsConvention>();
+//                         x.AddAllTypesOf(typeof (AbstractPermissionHandler<>));
                      });
 
             setupEmail();
             registerEventAggregator();
+           // For(typeof (AbstractPermissionHandler<>)).Use(typeof (AbstractPermissionHandler<>));
+            For<UserContext>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use(ctx =>
+                         {
+                             IPrincipal currentUser = ctx.GetInstance<ISecurityContext>().CurrentUser;
+                             var user = ctx.GetInstance<IUserService>().GetUserByLogin(currentUser.Identity.Name);
+                             return new UserContext(){User = user};
+                         });
         }
 
         private void setupEmail()
@@ -49,6 +61,7 @@ namespace Kokugen.Core
                                                      emailSettings.User, emailSettings.Password,
                                                      emailSettings.AuthorizationRequired);
                          });
+
         }
 
         private void setupNHibernate()

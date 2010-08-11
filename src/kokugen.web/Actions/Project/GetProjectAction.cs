@@ -49,7 +49,7 @@ namespace Kokugen.Web.Actions.Project
         public override bool Execute(GetProjectModel input)
         {
             var projects = _userContext.User.GetProjects();
-            return true;
+            return false;
         }
     }
     public class CanViewProjectPermission2 : AbstractPermissionHandler<GetProjectModel>

@@ -16,6 +16,7 @@ namespace Kokugen.Core.Membership.Services
     public class MembershipValidator : IMembershipValidator
     {
         private readonly IPasswordHelperService _passwordHelperService;
+
         private readonly PasswordSettings _passwordSettings;
 
         public MembershipValidator(IPasswordHelperService passwordHelperService, PasswordSettings passwordSettings)

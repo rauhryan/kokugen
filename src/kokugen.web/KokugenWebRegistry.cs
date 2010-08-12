@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Web;
+using FubuCore;
 using Kokugen.Core;
 using Kokugen.Core.Permissions.Handlers;
 using StructureMap.Configuration.DSL;
@@ -38,20 +39,14 @@ namespace Kokugen.Web
     {
         public void Process(Type type, Registry registry)
         {
-            var selectedInterface =
-                (from @interface in type.GetInterfaces()
-                 where @interface.IsGenericType &&
-                       @interface.GetGenericTypeDefinition()
-                           .IsAssignableFrom(typeof (IAuthorize<>))
-                 select @interface).SingleOrDefault();
-
-            if (selectedInterface != null)
+            if(type.Closes(typeof(IAuthorize<>)))
             {
+                var selectedInterface = type.FindInterfaceThatCloses(typeof(IAuthorize<>));
+          
                 registry.Configure(graph =>
                                        {
 
-                                           var family = graph.FindFamily(typeof (IAuthorize<>).MakeGenericType(
-                                               selectedInterface.GetGenericArguments()[0]));
+                                           var family = graph.FindFamily(typeof (IAuthorize<>).MakeGenericType(selectedInterface.GetGenericArguments()[0]));
                                                
                                            if (family != null && family.InstanceCount > 1)
                                            {

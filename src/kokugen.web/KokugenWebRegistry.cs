@@ -16,7 +16,7 @@ namespace Kokugen.Web
 
             For<HttpContextBase>().Use(ctx => new HttpContextWrapper(HttpContext.Current));
             For<HttpRequestBase>().Use(ctx => new HttpRequestWrapper(HttpContext.Current.Request));
-            For(typeof (IPermissionExecuter<>)).Use(typeof (PermissionExecuter<>));
+            For(typeof (IAuthorizationHandler<>)).Use(typeof (AuthorizationHandler<>));
 
             For(typeof (IAuthorize<>)).Use(typeof (AuthorizePermissions<>));
 

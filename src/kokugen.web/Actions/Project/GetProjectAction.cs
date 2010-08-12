@@ -37,14 +37,14 @@ namespace Kokugen.Web.Actions.Project
         public IList<Core.Domain.TimeRecord> TimeRecords { get; set; }
     }
 
-    public class CanViewProjectPermission1 : AbstractAuthorize<GetProjectModel>
+    public class CanViewProjectPermission1 : BasicAuthorizer<GetProjectModel>
     {
-        public override bool Execute(GetProjectModel input, UserContext context)
+        public override bool Authorize(GetProjectModel input, UserContext context)
         {
-            return base.Execute(input, context);
+            return base.Authorize(input, context);
         }
     }
-    //public class CanViewProjectPermission2 : AbstractAuthorize<GetProjectModel>
+    //public class CanViewProjectPermission2 : BasicAuthorizer<GetProjectModel>
     //{
     //    public override bool Execute(GetProjectModel input, UserContext context)
     //    {

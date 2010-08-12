@@ -65,7 +65,7 @@ namespace Kokugen.Web
 
             Policies.WrapBehaviorChainsWith<load_the_current_principal>();
             Policies.Add<AuthenticationBehaviorPolicy>();
-            Policies.Add<PermissionPolicy>();
+            Policies.Add<AuthorizationPolicy>();
 
             Services(x =>
                          {

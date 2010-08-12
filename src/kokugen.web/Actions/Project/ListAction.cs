@@ -29,7 +29,7 @@ namespace Kokugen.Web.Actions.Project
         public IEnumerable<Core.Domain.Project> Projects { get; set; }
     }
 
-    public class ProjectListAuthorize : AbstractAuthorize<ProjectListModel>
+    public class ProjectListAuthorize : BasicAuthorizer<ProjectListModel>
     {
         
     }

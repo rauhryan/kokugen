@@ -7,6 +7,7 @@ using FubuMVC.Core.Registration.DSL;
 using FubuMVC.Core.Registration.ObjectGraph;
 using FubuMVC.Core.Urls;
 using Kokugen.Core.Membership;
+using Kokugen.Core.Permissions.Handlers;
 using Kokugen.Web.Actions;
 using Kokugen.Web.Actions.Board;
 using Kokugen.Web.Actions.Errors;
@@ -64,6 +65,7 @@ namespace Kokugen.Web
 
             Policies.WrapBehaviorChainsWith<load_the_current_principal>();
             Policies.Add<AuthenticationBehaviorPolicy>();
+            Policies.Add<PermissionPolicy>();
 
             Services(x =>
                          {

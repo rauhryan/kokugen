@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Kokugen.Core.Permissions.Handlers;
 using Kokugen.Core.Services;
 using Kokugen.Web.Conventions;
 
@@ -26,5 +27,10 @@ namespace Kokugen.Web.Actions.Project
     public class ProjectListModel
     {
         public IEnumerable<Core.Domain.Project> Projects { get; set; }
+    }
+
+    public class ProjectListAuthorize : AbstractAuthorize<ProjectListModel>
+    {
+        
     }
 }

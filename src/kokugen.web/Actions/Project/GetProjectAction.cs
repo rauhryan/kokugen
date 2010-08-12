@@ -39,9 +39,9 @@ namespace Kokugen.Web.Actions.Project
 
     public class CanViewProjectPermission1 : BasicAuthorizer<GetProjectModel>
     {
-        public override bool Authorize(GetProjectModel input, UserContext context)
+        public override bool Authorize(GetProjectModel input)
         {
-            return base.Authorize(input, context);
+            return base.Authorize(input);
         }
     }
     //public class CanViewProjectPermission2 : BasicAuthorizer<GetProjectModel>

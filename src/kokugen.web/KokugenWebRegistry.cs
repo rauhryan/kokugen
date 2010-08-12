@@ -17,8 +17,8 @@ namespace Kokugen.Web
 
             For<HttpContextBase>().Use(ctx => new HttpContextWrapper(HttpContext.Current));
             For<HttpRequestBase>().Use(ctx => new HttpRequestWrapper(HttpContext.Current.Request));
+           
             For(typeof (IAuthorizationHandler<>)).Use(typeof (AuthorizationHandler<>));
-
             For(typeof (IAuthorize<>)).Use(typeof (AuthorizePermissions<>));
 
             Scan(x =>
@@ -48,6 +48,7 @@ namespace Kokugen.Web
 
                                            var family = graph.FindFamily(typeof (IAuthorize<>).MakeGenericType(selectedInterface.GetGenericArguments()[0]));
                                                
+                                           // logic here needs some work but for us we only want one custom auth but we are open for debate.
                                            if (family != null && family.InstanceCount > 1)
                                            {
                                                throw new StructureMap.Exceptions.StructureMapConfigurationException(

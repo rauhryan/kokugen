@@ -13,14 +13,10 @@ using StructureMap;
 
 namespace Kokugen.Core.Permissions.Handlers
 {
-    public interface IAuthorize<TInput, TContext>
-    {
-        bool Authorize(TInput input, TContext context);
-    }
-
+  
     public abstract class BasicAuthorizer<TInput> : IAuthorize<TInput>
     {
-        public virtual bool Authorize(TInput input, UserContext context)
+        public virtual bool Authorize(TInput input)
         {
             return true;
         }
@@ -28,28 +24,34 @@ namespace Kokugen.Core.Permissions.Handlers
 
     public class AuthorizePermissions<TInput>  : IAuthorize<TInput>
     {
-        public bool Authorize(TInput input, UserContext context)
+        private readonly UserContext _userContext;
+
+        public AuthorizePermissions(UserContext userContext)
         {
-            //Todo: logic here
+            _userContext = userContext;
+        }
+
+        public bool Authorize(TInput input)
+        {
+            //Todo: logic here to check if user has permission by convention
 
             return true;
         }
     }
 
-    public interface IAuthorize<TInput> : IAuthorize<TInput, UserContext>
+    public interface IAuthorize<TInput> 
     {
+        bool Authorize(TInput input);
     }
 
 
     public class AuthorizationHandler<T> : IAuthorizationHandler<T> where T : class
     {
         private readonly IEnumerable<IAuthorize<T>> _handlers;
-        private readonly UserContext _context;
 
-        public AuthorizationHandler(IEnumerable<IAuthorize<T>> handlers, UserContext context)
+        public AuthorizationHandler(IEnumerable<IAuthorize<T>> handlers)
         {
             _handlers = handlers;
-            _context = context;
         }
 
         public FubuContinuation Handle(T input)
@@ -57,8 +59,9 @@ namespace Kokugen.Core.Permissions.Handlers
             if (_handlers.Count() == 0)
                 return FubuContinuation.NextBehavior();
 
-            return _handlers.All(permissionHandler => permissionHandler.Authorize(input, _context))
+            return _handlers.All(permissionHandler => permissionHandler.Authorize(input))
                 ? FubuContinuation.NextBehavior()
+                // this is not right maybe 403 here or something
                 : FubuContinuation.RedirectTo("/Home");
         }
     }

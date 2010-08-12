@@ -13,28 +13,43 @@ using StructureMap;
 
 namespace Kokugen.Core.Permissions.Handlers
 {
-    public abstract class AbstractPermissionHandler<TInput> : IPermissionHandler<TInput>
+    public interface IPermissionHandler<TInput, TContext>
     {
-        public virtual bool Execute(TInput input)
+        bool Execute(TInput input, TContext context);
+    }
+
+    public abstract class AbstractAuthorize<TInput> : IAuthorize<TInput>
+    {
+        public virtual bool Execute(TInput input, UserContext context)
         {
             return true;
         }
     }
 
-    public interface IPermissionHandler<T>
+    public class AuthorizePermissions<TInput>  : IAuthorize<TInput>
     {
-        bool Execute(T input);
+        public bool Execute(TInput input, UserContext context)
+        {
+            return true;
+        }
     }
+
+    public interface IAuthorize<TInput> : IPermissionHandler<TInput, UserContext>
+    {
+    }
+
 
     public class PermissionExecuter<T> : IPermissionExecuter<T> where T : class
     {
-        private readonly IEnumerable<IPermissionHandler<T>> _handlers;
+        private readonly IEnumerable<IAuthorize<T>> _handlers;
         private readonly IFubuRequest _fubuRequest;
+        private readonly UserContext _context;
 
-        public PermissionExecuter(IEnumerable<IPermissionHandler<T>> handlers, IFubuRequest fubuRequest)
+        public PermissionExecuter(IEnumerable<IAuthorize<T>> handlers, IFubuRequest fubuRequest, UserContext context)
         {
             _handlers = handlers;
             _fubuRequest = fubuRequest;
+            _context = context;
         }
 
         public FubuContinuation Handle(T input)
@@ -42,7 +57,7 @@ namespace Kokugen.Core.Permissions.Handlers
             if (_handlers.Count() == 0)
                 return FubuContinuation.NextBehavior();
 
-            return _handlers.All(permissionHandler => permissionHandler.Execute(input))
+            return _handlers.All(permissionHandler => permissionHandler.Execute(input, _context))
                 ? FubuContinuation.NextBehavior()
                 : FubuContinuation.RedirectTo("/Home");
         }
